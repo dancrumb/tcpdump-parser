@@ -1,0 +1,18 @@
+{
+  "name": "tcpdump-parser",
+  "version": "1.0.0",
+  "description": "Parser for tcpdump output",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0"
+  },
+  "dependencies": {
+    "ip": "^1.1.5"
+  },
+  "scripts": {
+    "build": "babel src/ --out-dir dist --source-maps",
+    "build:examples": "babel examples/ --out-dir dist/examples --source-maps"
+  }
+}
