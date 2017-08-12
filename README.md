@@ -1,4 +1,4 @@
-#TCPDumpParser
+# TCPDumpParser
 
 A `Transform` stream that converts the ouput from
 
@@ -34,7 +34,7 @@ This example would be used via:
 tcpdump -i en0 -X | node example.js
 ```
 
-##Building
+## Building
 
 There's a `build`run-script and a `build:examples` run-script that
 npm or yarn users can use.
