@@ -1,13 +1,7 @@
 import ip from 'ip';
+import packetSerializer from "./packetSerializer";
 
 const getWord = (buffer, offset) => buffer.readUInt16BE(offset);
-const getDWord = (buffer, offset) => buffer.readUInt32BE(offset);
-
-const PROTOCOLS = {
-  1: 'icmp',
-  6: 'tcp',
-  17: 'udp'
-};
 
 export default class IP6Packet {
   constructor(buffer) {
@@ -37,5 +31,12 @@ export default class IP6Packet {
 
   checksumIsValid() {
     return true;
+  }
+
+  toJSON() {
+    const o = packetSerializer(this);
+    o.srcAddress = this.getSrcAddress();
+    o.dstAddress = this.getDstAddress();
+    return o;
   }
 }

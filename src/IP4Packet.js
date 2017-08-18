@@ -1,4 +1,5 @@
 import ip from 'ip';
+import packetSerializer from "./packetSerializer";
 
 const getWord = (buffer, offset) => buffer.readUInt16BE(offset);
 const getDWord = (buffer, offset) => buffer.readUInt32BE(offset);
@@ -54,4 +55,14 @@ export default class IP4Packet {
     total = (total & 0xFFFF) + ((total & 0xFF0000) >> 16);
     return total === 0xffff;
   }
+
+  toJSON() {
+    const o = packetSerializer(this);
+
+    o.srcAddress = this.getSrcAddress();
+    o.dstAddress = this.getDstAddress();
+
+    return o;
+  }
+
 }

@@ -2,7 +2,7 @@
   "name": "tcpdump-parser",
   "version": "1.0.0",
   "description": "Parser for tcpdump output",
-  "main": "dist/index.js",
+  "main": "dist/TCPDumpParser.js",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.24.1",

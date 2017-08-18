@@ -1,4 +1,5 @@
 import PseudoHeader from './PseudoHeader';
+import packetSerializer from "./packetSerializer";
 const getWord = (buffer, offset) => buffer.readUInt16BE(offset);
 const getDWord = (buffer, offset) => buffer.readUInt32BE(offset);
 
@@ -33,7 +34,7 @@ export default class TCPPacket {
 
     this.windowSize = getWord(buffer, 14);
     this.checkSum = getWord(buffer, 16);
-    this.urgentPointer = getWord(buffer,18)
+    this.urgentPointer = getWord(buffer,18);
     if(!this.urg) {
       this.urgentPointer = 0;
     }
@@ -93,5 +94,9 @@ export default class TCPPacket {
   createPseudoHeader(srcIP, dstIP) {
     this.pseudoHeader = new PseudoHeader(srcIP, dstIP, 6);
     this.pseudoHeader.setLength(this.tcpHeader.length + this.contentPacket.length);
+  }
+
+  toJSON() {
+    return packetSerializer(this);
   }
 }

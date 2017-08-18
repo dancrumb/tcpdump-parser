@@ -1,5 +1,4 @@
 import { Writable } from 'stream';
-import { inspect } from 'util';
 
 export default class ScreenWriter extends Writable {
   constructor(options = {}) {
@@ -7,7 +6,7 @@ export default class ScreenWriter extends Writable {
   }
 
   _write(chunk, encoding, callback) {
-    console.log(inspect(chunk, { colors: true, depth: null }));
+    console.log(JSON.stringify(chunk));
     callback();
   }
 };

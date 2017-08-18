@@ -1,4 +1,5 @@
 import PseudoHeader from './PseudoHeader';
+import packetSerializer from "./packetSerializer";
 
 const getWord = (buffer, offset) => buffer.readUInt16BE(offset);
 
@@ -18,5 +19,9 @@ export default class UDPPacket {
   createPseudoHeader(srcIP, dstIP) {
     this.pseudoHeader = new PseudoHeader(srcIP, dstIP, 17);
     this.pseudoHeader.setLength(this.length);
+  }
+
+  toJSON() {
+    return packetSerializer(this);
   }
 }

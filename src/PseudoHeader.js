@@ -1,3 +1,5 @@
+import packetSerializer from "./packetSerializer";
+
 export default class PseudoHeader {
   constructor(srcIp, dstIp, protocol) {
     this.version = srcIp.length === 4 ? 4 : 6;
@@ -21,10 +23,14 @@ export default class PseudoHeader {
       buf.writeUInt16BE(this.length, 10)
     }
     if(this.version === 6) {
-      buf.writeUInt32BE(this.length, 32)
+      buf.writeUInt32BE(this.length, 32);
       buf.writeUInt32BE(0,36);
       buf.writeUIntBE(0,38);
       buf.writeUIntBE(6,39);
     }
+  }
+
+  toJSON() {
+    return packetSerializer(this);
   }
 }
